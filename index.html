@@ -1,0 +1,1070 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aider Bio Inc. | 3D Cell Culture Hardware & AI-Based 3D Cell Prediction System</title>
+  <meta name="description" content="Aider Bio Inc. develops high-reproducibility 3D cell culture hardware and an AI-based 3D cell prediction system for early-stage drug evaluation." />
+  <meta property="og:title" content="Aider Bio Inc. | 3D Cell Culture Hardware & AI-Based 3D Cell Prediction System" />
+  <meta property="og:description" content="Aider Bio Inc. develops high-reproducibility 3D cell culture hardware and an AI-based 3D cell prediction system for early-stage drug evaluation." />
+  <meta property="og:type" content="website" />
+  <style>
+:root {
+  --bg: #06101d;
+  --bg-soft: #0b1830;
+  --panel: rgba(10, 24, 46, 0.78);
+  --panel-strong: rgba(9, 20, 38, 0.94);
+  --surface: rgba(255,255,255,0.04);
+  --line: rgba(132, 191, 255, 0.16);
+  --line-strong: rgba(132, 191, 255, 0.28);
+  --text: #eef5ff;
+  --muted: #9cb1c9;
+  --cyan: #63dfff;
+  --blue: #5688ff;
+  --mint: #5cf0cf;
+  --glow: 0 20px 60px rgba(0, 0, 0, 0.34);
+  --max: 1200px;
+  --radius-xl: 34px;
+  --radius-lg: 26px;
+  --radius-md: 18px;
+  --radius-sm: 14px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, "Pretendard", "Noto Sans KR", Arial, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 10% 12%, rgba(99,223,255,.18), transparent 25%),
+    radial-gradient(circle at 92% 10%, rgba(86,136,255,.18), transparent 22%),
+    radial-gradient(circle at 50% 100%, rgba(92,240,207,.08), transparent 28%),
+    linear-gradient(180deg, #050d1a 0%, #071224 32%, #09172d 100%);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,0));
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+.container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+.section { padding: 42px 0; }
+
+.top-strip {
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  background: rgba(255,255,255,.02);
+}
+.top-strip .container {
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #cde6ff;
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.strip-note { color: var(--muted); letter-spacing: .03em; text-transform: none; }
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(18px);
+  background: rgba(5, 13, 26, 0.76);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.nav {
+  min-height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+.brand-mark {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, rgba(99,223,255,.25), rgba(86,136,255,.32));
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.05), 0 10px 30px rgba(99,223,255,.12);
+}
+.brand-mark span {
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+.brand-copy { min-width: 0; }
+.brand-name {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: .18em;
+  white-space: nowrap;
+}
+.brand-tagline {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.nav-links a { position: relative; transition: color .16s ease; }
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -8px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--cyan), var(--mint));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .18s ease;
+}
+.nav-links a:hover { color: white; }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+}
+.lang-link {
+  min-width: 44px;
+  height: 36px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  transition: .16s ease;
+}
+.lang-link:hover { color: white; }
+.lang-link.active {
+  color: #062033;
+  background: linear-gradient(135deg, var(--cyan), #8df4e1);
+  box-shadow: 0 10px 24px rgba(99,223,255,.18);
+}
+.btn-primary, .btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 20px;
+  border-radius: 999px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+}
+.btn-primary {
+  color: #061e31;
+  background: linear-gradient(135deg, var(--cyan), #8cf2dd);
+  box-shadow: 0 12px 30px rgba(99,223,255,.22);
+}
+.btn-secondary {
+  color: #edf5ff;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.12);
+}
+.btn-primary:hover, .btn-secondary:hover { transform: translateY(-2px); }
+
+.hero {
+  padding: 34px 0 12px;
+}
+.hero-shell {
+  position: relative;
+  overflow: hidden;
+  border-radius: 38px;
+  background:
+    linear-gradient(140deg, rgba(13, 28, 52, 0.96), rgba(8, 18, 36, 0.9)),
+    linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: var(--glow);
+}
+.hero-shell::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: radial-gradient(circle at 20% 12%, rgba(99,223,255,.14), transparent 28%), radial-gradient(circle at 86% 16%, rgba(86,136,255,.18), transparent 24%);
+  pointer-events: none;
+}
+.hero-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 28px;
+  padding: 38px;
+}
+.hero-copy { position: relative; z-index: 1; }
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(99,223,255,.08);
+  border: 1px solid rgba(99,223,255,.18);
+  color: #bdefff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.hero-copy h1 {
+  margin: 20px 0 0;
+  font-size: clamp(38px, 5.6vw, 64px);
+  line-height: 1.03;
+  letter-spacing: -0.04em;
+}
+.hero-copy h1 .accent {
+  background: linear-gradient(135deg, #c8f8ff, #8fb8ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero-lead {
+  margin: 22px 0 0;
+  max-width: 720px;
+  color: #d6e6f7;
+  font-size: 18px;
+}
+.hero-bullets {
+  margin-top: 22px;
+  display: grid;
+  gap: 10px;
+}
+.hero-bullets li {
+  list-style: none;
+  padding-left: 18px;
+  position: relative;
+  color: #e6f2ff;
+}
+.hero-bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 10px;
+  width: 8px; height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--cyan), var(--mint));
+  box-shadow: 0 0 0 5px rgba(99,223,255,.10);
+}
+.hero-actions {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.hero-meta {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.mini-card {
+  padding: 16px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+}
+.mini-card strong {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: #b9efff;
+  margin-bottom: 8px;
+}
+.mini-card span {
+  color: #eff6ff;
+  font-size: 14px;
+}
+.hero-visual {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 14px;
+}
+.visual-card {
+  padding: 16px;
+  border-radius: 28px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+}
+.visual-card img {
+  width: 100%;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: #fff;
+}
+.visual-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.stat-card {
+  padding: 18px 14px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+}
+.stat-value {
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #d5fbff, #88b3ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.stat-label {
+  color: #edf6ff;
+  font-size: 13px;
+  font-weight: 700;
+}
+.stat-note {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.section-head {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+.section-kicker {
+  color: #93ebff;
+  font-size: 12px;
+  letter-spacing: .18em;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+h2 {
+  margin: 0;
+  font-size: clamp(30px, 4vw, 46px);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+}
+.section-desc {
+  margin: 0;
+  max-width: 920px;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.band {
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.03);
+  box-shadow: var(--glow);
+}
+.about-band {
+  border-radius: 30px;
+  padding: 22px;
+}
+.chip-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.chip-card {
+  padding: 18px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
+  border: 1px solid rgba(255,255,255,.08);
+}
+.chip-card strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 16px;
+}
+.chip-card span {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.feature-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 100%;
+  padding: 28px;
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: var(--glow);
+}
+.feature-card::before {
+  content: "";
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(99,223,255,.14), transparent 70%);
+}
+.feature-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.feature-index {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  color: #092034;
+  background: linear-gradient(135deg, var(--cyan), #89f1df);
+}
+.feature-card h3 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.2;
+}
+.feature-card p {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 15px;
+}
+.feature-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+.feature-list li {
+  position: relative;
+  padding-left: 18px;
+  color: #ebf4ff;
+  font-size: 15px;
+}
+.feature-list li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 10px;
+  width: 8px; height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--cyan), var(--mint));
+}
+
+.axis-grid {
+  display: grid;
+  gap: 20px;
+}
+.axis-card {
+  display: grid;
+  grid-template-columns: 1.02fr .98fr;
+  gap: 24px;
+  align-items: center;
+  padding: 24px;
+  border-radius: 30px;
+  background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: var(--glow);
+}
+.axis-card.reverse { grid-template-columns: .98fr 1.02fr; }
+.axis-media {
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.03);
+}
+.axis-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.axis-copy h3 {
+  margin: 0 0 12px;
+  font-size: 30px;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+}
+.axis-copy p {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 16px;
+}
+.axis-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.axis-list li {
+  padding: 15px 16px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.035);
+  border: 1px solid rgba(255,255,255,.08);
+  color: #e6f0fb;
+}
+.axis-list li strong { color: white; }
+
+.advantage-grid {
+  display: grid;
+  grid-template-columns: .82fr 1.18fr;
+  gap: 20px;
+}
+.panel {
+  border-radius: 30px;
+  padding: 28px;
+  background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: var(--glow);
+}
+.panel h3 {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.15;
+}
+.panel p {
+  color: var(--muted);
+  font-size: 16px;
+}
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 18px;
+}
+.metric-card {
+  padding: 20px 16px;
+  border-radius: 22px;
+  background: rgba(255,255,255,.035);
+  border: 1px solid rgba(255,255,255,.08);
+}
+.metric-number {
+  font-size: clamp(34px, 4vw, 52px);
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #d0fbff, #83b0ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.metric-title {
+  font-size: 13px;
+  color: white;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.metric-note {
+  color: var(--muted);
+  font-size: 13px;
+}
+.advantage-image {
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.advantage-image img {
+  width: 100%;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: #fff;
+}
+
+.use-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.use-card {
+  overflow: hidden;
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: var(--glow);
+}
+.use-card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+.use-copy { padding: 24px; }
+.use-copy h3 {
+  margin: 0 0 10px;
+  font-size: 24px;
+}
+.use-copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.timeline-card {
+  padding: 24px;
+  border-radius: 26px;
+  background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: var(--glow);
+}
+.phase {
+  display: inline-flex;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(99,223,255,.08);
+  border: 1px solid rgba(99,223,255,.18);
+  color: #bdefff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.timeline-card h3 {
+  margin: 0 0 10px;
+  font-size: 20px;
+}
+.timeline-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.cta-band {
+  position: relative;
+  overflow: hidden;
+  border-radius: 34px;
+  padding: 30px;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(99,223,255,.18), transparent 22%),
+    radial-gradient(circle at 80% 10%, rgba(86,136,255,.18), transparent 20%),
+    linear-gradient(135deg, rgba(9, 24, 45, .98), rgba(7, 18, 34, .94));
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: var(--glow);
+}
+.cta-grid {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 20px;
+  align-items: stretch;
+}
+.contact-card {
+  border-radius: 28px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+.contact-card h3 {
+  margin: 0 0 12px;
+  font-size: 30px;
+  line-height: 1.15;
+}
+.contact-card p {
+  margin: 0 0 20px;
+  color: #d6e6f7;
+  font-size: 16px;
+}
+.contact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.contact-list li {
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+}
+.contact-list li strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 12px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #bdefff;
+}
+.contact-list li span {
+  color: #eff6ff;
+  font-size: 15px;
+}
+.footer {
+  padding: 28px 0 52px;
+  color: #8ea7c1;
+  font-size: 13px;
+}
+.footer-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.muted { color: var(--muted); }
+.hide-mobile { display: inline; }
+
+@media (max-width: 1140px) {
+  .hero-grid,
+  .advantage-grid,
+  .axis-card,
+  .axis-card.reverse,
+  .cta-grid { grid-template-columns: 1fr; }
+  .pillar-grid,
+  .timeline-grid,
+  .chip-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 760px) {
+  .top-strip .container { min-height: 38px; font-size: 11px; }
+  .strip-note { display: none; }
+  .nav { min-height: 72px; }
+  .nav-links, .nav-cta { display: none; }
+  .brand-tagline { display: none; }
+  .hero-shell { border-radius: 28px; }
+  .hero-grid { padding: 22px; gap: 20px; }
+  .hero-copy h1 { font-size: 38px; }
+  .hero-lead, .section-desc { font-size: 16px; }
+  .hero-meta,
+  .visual-stats,
+  .metric-grid,
+  .use-grid,
+  .timeline-grid,
+  .pillar-grid,
+  .chip-grid { grid-template-columns: 1fr; }
+  h2 { font-size: 30px; }
+  .axis-copy h3, .contact-card h3 { font-size: 24px; }
+  .section { padding: 32px 0; }
+  .panel, .feature-card, .timeline-card, .about-band, .cta-band { padding: 22px; }
+}
+</style>
+</head>
+<body>
+  <div class="top-strip">
+    <div class="container">
+      <div>3D Cell Hardware × AI Prediction Platform</div>
+      <div class="strip-note">Built for pharma, biotech, CRO, and research labs</div>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#top" class="brand" aria-label="AIDER BIO INC.">
+        <div class="brand-mark"><span>AB</span></div>
+        <div class="brand-copy">
+          <div class="brand-name">AIDER BIO INC.</div>
+          <div class="brand-tagline">3D Cell Hardware & AI Prediction System</div>
+        </div>
+      </a>
+      <nav class="nav-links"><a href="#about">About</a>
+<a href="#business">Business</a>
+<a href="#technology">Technology</a>
+<a href="#advantage">Why Us</a>
+<a href="#roadmap">Roadmap</a>
+<a href="#contact">Contact</a></nav>
+      <div class="nav-actions">
+        <div class="lang-switch" aria-label="language switch">
+          <a class="lang-link " href="ko.html">KR</a>
+          <a class="lang-link active" href="index.html">EN</a>
+        </div>
+        <a class="btn-primary nav-cta" href="#contact">Contact Us</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-shell">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow">3D Cell Hardware × AI Prediction Platform</div>
+            <h1><span class="accent">Aider Bio Inc.</span><br>builds 3D cell culture hardware<br>and an AI-based 3D cell<br>prediction system.</h1>
+            <p class="hero-lead">We help pharmaceutical companies, biotech ventures, CROs, and research institutes make faster and more reliable decisions in early-stage drug evaluation by combining reproducible 3D cell culture hardware with AI-based quantitative analysis.</p>
+            <ul class="hero-bullets"><li>Two core pillars: hardware and AI prediction system</li>
+<li>Three-pillar business structure with evaluation services as the application layer</li>
+<li>Quantitative value centered on reproducibility, recovery, and dropout</li></ul>
+            <div class="hero-actions">
+              <a class="btn-primary" href="#technology">View Core Technology</a>
+              <a class="btn-secondary" href="#contact">Contact for Partnership</a>
+            </div>
+            <div class="hero-meta"><div class="mini-card"><strong>Core Pillar 1</strong><span>High-reproducibility 3D cell culture hardware</span></div>
+<div class="mini-card"><strong>Core Pillar 2</strong><span>AI-based 3D cell prediction system</span></div>
+<div class="mini-card"><strong>Service Pillar</strong><span>Organoid-based evaluation and analysis services</span></div></div>
+          </div>
+          <div class="hero-visual">
+            <div class="visual-card">
+              <img src="assets/hardware.png" alt="Aider Bio hardware" />
+            </div>
+            <div class="visual-stats">
+              <div class="stat-card">
+                <div class="stat-value">10–15%</div>
+                <div class="stat-label">Experimental CV</div>
+                <div class="stat-note">Reproducibility-focused</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">70–85%</div>
+                <div class="stat-label">Cell Recovery</div>
+                <div class="stat-note">Higher usable output</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">5–10%</div>
+                <div class="stat-label">Dropout Rate</div>
+                <div class="stat-note">Lower loss during workflow</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head">
+      <div class="section-kicker">About Aider Bio Inc.</div>
+      <h2>A bio-platform company structured around technology, not vague messaging.</h2>
+      <p class="section-desc">Aider Bio Inc. integrates 3D cell culture hardware with an AI-based 3D cell prediction system to improve reproducibility, quantitative interpretation, and workflow efficiency in early-stage drug evaluation.</p>
+    </div>
+        <div class="band about-band">
+          <div class="chip-grid"><div class="chip-card"><strong>Pharma</strong><span>Early drug screening and toxicity evaluation</span></div>
+<div class="chip-card"><strong>Biotech</strong><span>Reproducible 3D models for development pipelines</span></div>
+<div class="chip-card"><strong>CRO</strong><span>Standardized preclinical evaluation workflows</span></div>
+<div class="chip-card"><strong>Research Labs</strong><span>Hospital and academic collaboration environments</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="business">
+      <div class="container">
+        <div class="section-head">
+      <div class="section-kicker">Business Structure</div>
+      <h2>Three business pillars. Two define the company.</h2>
+      <p class="section-desc">Our technical identity is defined by hardware and the AI prediction system. The third pillar connects these technologies to real partner workflows through evaluation and analysis services.</p>
+    </div>
+        <div class="pillar-grid"><article class="feature-card">
+              <div class="feature-top">
+                <div class="feature-index">01</div>
+                <h3>3D Cell Culture Hardware</h3>
+              </div>
+              <p>A structured culture platform designed to reduce disturbance during media exchange and maintain stable positioning of cells and organoids.</p>
+              <ul class="feature-list"><li>OrganoWell™ 96 plate-based culture format</li><li>Port-pocket design optimizing media flow</li><li>Improved reproducibility and operator usability</li></ul>
+            </article>
+<article class="feature-card">
+              <div class="feature-top">
+                <div class="feature-index">02</div>
+                <h3>AI-Based 3D Cell Prediction System</h3>
+              </div>
+              <p>A software system that analyzes fluorescence images with AI to predict cytotoxicity and quantify cellular response automatically.</p>
+              <ul class="feature-list"><li>Automated Live/Dead image analysis</li><li>AI feature extraction for quantitative metrics</li><li>Faster and more objective screening decisions</li></ul>
+            </article>
+<article class="feature-card">
+              <div class="feature-top">
+                <div class="feature-index">03</div>
+                <h3>Evaluation & Analysis Services</h3>
+              </div>
+              <p>An application layer that brings our hardware and AI system into customer-specific preclinical workflows.</p>
+              <ul class="feature-list"><li>Organoid-based evaluation workflows</li><li>Designed for pharma, biotech, and CRO partners</li><li>Supports preclinical efficiency and validation</li></ul>
+            </article></div>
+      </div>
+    </section>
+
+    <section class="section" id="technology">
+      <div class="container">
+        <div class="section-head">
+      <div class="section-kicker">Core Technology</div>
+      <h2>The website centers on what the materials actually show.</h2>
+      <p class="section-desc">Instead of decorative language, the technology section is organized around the real hardware structure image and the actual AI analysis flow image.</p>
+    </div>
+        <div class="axis-grid">
+          <article class="axis-card">
+            <div class="axis-media"><img src="assets/hardware.png" alt="hardware" /></div>
+            <div class="axis-copy">
+              <h3>Pillar 1. 3D Cell Culture Hardware</h3>
+              <p>The hardware uses a hybrid single-well structure and port-pocket design to reduce structural disturbance during media exchange and keep cells and organoids positioned more consistently throughout an experiment.</p>
+              <ul class="axis-list"><li><strong>Structural design</strong> — Separate zones for culture, port pocket, and media flow improve stability.</li><li><strong>OrganoWell™ 96</strong> — A scalable 96-well format built for practical lab use.</li><li><strong>Prototype-driven development</strong> — The prototype itself anchors the productization roadmap.</li></ul>
+            </div>
+          </article>
+          <article class="axis-card reverse">
+            <div class="axis-copy">
+              <h3>Pillar 2. AI-Based 3D Cell Prediction System</h3>
+              <p>The AI system ingests fluorescence images, extracts meaningful features automatically, and predicts cytotoxicity and cellular response as quantitative outputs that are easier for teams to interpret and compare.</p>
+              <ul class="axis-list"><li><strong>Image input</strong> — Live/Dead fluorescence images classify cellular state.</li><li><strong>AI feature extraction</strong> — Intensity, morphology, and pattern features are quantified.</li><li><strong>Prediction and reporting</strong> — Toxicity and response are visualized through metrics and charts.</li></ul>
+            </div>
+            <div class="axis-media"><img src="assets/ai-system.png" alt="ai system" /></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="advantage">
+      <div class="container">
+        <div class="section-head">
+      <div class="section-kicker">Why Aider Bio Inc.</div>
+      <h2>Professional credibility comes from numbers, not slogans.</h2>
+      <p class="section-desc">The most important signals are lower variability, higher cell recovery, and lower dropout. Those are the performance indicators that matter to partner companies and evaluators.</p>
+    </div>
+        <div class="advantage-grid">
+          <div class="panel">
+            <h3>Quantitative performance highlights</h3>
+            <p>Quantitative performance highlights aligned to the company’s product positioning and internal evaluation materials.</p>
+            <div class="metric-grid"><div class="metric-card">
+          <div class="metric-number">10–15%</div>
+          <div class="metric-title">Experimental CV</div>
+          <div class="metric-note">Lower variation supports more reproducible runs.</div>
+        </div>
+<div class="metric-card">
+          <div class="metric-number">70–85%</div>
+          <div class="metric-title">Cell Recovery</div>
+          <div class="metric-note">Higher recoverable cell volume strengthens analysis quality.</div>
+        </div>
+<div class="metric-card">
+          <div class="metric-number">5–10%</div>
+          <div class="metric-title">Dropout Rate</div>
+          <div class="metric-note">Reduced loss during culture and media exchange.</div>
+        </div></div>
+          </div>
+          <div class="panel advantage-image">
+            <img src="assets/hardware.png" alt="hardware structure" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+      <div class="section-kicker">Application</div>
+      <h2>Designed for real workflows, not a concept-only slide.</h2>
+      <p class="section-desc">Our platform is designed to fit practical laboratory and evaluation workflows, so that hardware, analysis, and reporting can connect naturally in the hands of real users.</p>
+    </div>
+        <div class="use-grid"><article class="use-card">
+              <img src="assets/lab-bench.jpg" alt="Field-Ready Workflow" />
+              <div class="use-copy">
+                <h3>Field-Ready Workflow</h3>
+                <p>The hardware is designed to fit existing lab processes and reduce operator-dependent variability in experimental outcomes.</p>
+              </div>
+            </article>
+<article class="use-card">
+              <img src="assets/lab-equipment.jpg" alt="Partner-Driven Expansion" />
+              <div class="use-copy">
+                <h3>Partner-Driven Expansion</h3>
+                <p>The platform is positioned for use with pharmaceutical companies, biotech ventures, CROs, hospitals, and research labs.</p>
+              </div>
+            </article></div>
+      </div>
+    </section>
+
+    <section class="section" id="roadmap">
+      <div class="container">
+        <div class="section-head">
+      <div class="section-kicker">Roadmap</div>
+      <h2>From prototype refinement to commercial scale-up.</h2>
+      <p class="section-desc">The roadmap is organized around hardware refinement, AI system maturation, validation, and commercialization — a sequence that is easier for evaluators and partners to understand.</p>
+    </div>
+        <div class="timeline-grid"><article class="timeline-card">
+          <div class="phase">Step 1</div>
+          <h3>Hardware Refinement</h3>
+          <p>Improve structural design and usability for a more stable culture environment.</p>
+        </article>
+<article class="timeline-card">
+          <div class="phase">Step 2</div>
+          <h3>AI System Maturation</h3>
+          <p>Expand datasets and sharpen algorithms for stronger predictive output.</p>
+        </article>
+<article class="timeline-card">
+          <div class="phase">Step 3</div>
+          <h3>Validation Expansion</h3>
+          <p>Build real-world performance evidence through collaborative studies.</p>
+        </article>
+<article class="timeline-card">
+          <div class="phase">Step 4</div>
+          <h3>Commercial Scale-Up</h3>
+          <p>Deliver hardware, software, and services as one integrated offering.</p>
+        </article></div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container cta-band">
+        <div class="cta-grid">
+          <div class="contact-card">
+            <div class="section-kicker">Contact</div>
+            <h3>Talk to Aider Bio Inc.</h3>
+            <p>We work with pharmaceutical companies, biotech ventures, CROs, hospitals, and research institutes that need higher reproducibility in 3D cell experiments and more quantitative cellular response analysis.</p>
+            <a class="btn-primary" href="mailto:contact@aiderbio.net">Email contact@aiderbio.net</a>
+          </div>
+          <div class="contact-card">
+            <div class="section-kicker">Company Information</div>
+            <ul class="contact-list"><li><strong>Company</strong><span>Aider Bio Inc.</span></li>
+<li><strong>Focus</strong><span>3D cell culture hardware & AI-based 3D cell prediction system</span></li>
+<li><strong>Target Customers</strong><span>Pharma · Biotech · CRO · Hospitals · Research labs</span></li>
+<li><strong>Email</strong><span>contact@aiderbio.net</span></li>
+<li><strong>Website</strong><span>www.aiderbio.net</span></li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>© Aider Bio Inc. All rights reserved.</div>
+      <div>Switch between KR and EN using the header language toggle.</div>
+    </div>
+  </footer>
+</body>
+</html>
