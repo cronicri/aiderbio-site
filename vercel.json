@@ -1,0 +1,13 @@
+{
+  "redirects": [
+    { "source": "/(.*)", "destination": "/maintenance.html", "statusCode": 503 }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store" }
+      ]
+    }
+  ]
+}
